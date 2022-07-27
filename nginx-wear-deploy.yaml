@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+  name: nginxwear
+spec:
+  selector:
+    matchLabels:
+      name: nginxwear
+  template:
+    metadata:
+      labels:
+        name: nginxwear
+    spec:
+      containers:
+      - image: sidlakhani/kubernetes_wear
+        name: nginxwear
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-wear-service
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    name: nginxwear
+  ports:
+  - port: 82
+    targetPort: 82
+    nodePort: 30001

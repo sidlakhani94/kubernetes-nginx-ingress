@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+  name: nginxwatch
+spec:
+  selector:
+    matchLabels:
+      name: nginxwatch
+  template:
+    metadata:
+      labels:
+        name: nginxwatch
+    spec:
+      containers:
+      - image: sidlakhani/kubernetes_watch
+        name: nginxwatch
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-watch-service
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    name: nginxwatch
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30002
