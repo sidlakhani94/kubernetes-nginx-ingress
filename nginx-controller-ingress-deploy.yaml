@@ -319,6 +319,7 @@ spec:
             - --election-id=ingress-controller-leader
             - --ingress-class=nginx
             - --configmap=ingress-nginx/ingress-nginx-controller
+            - --enable-ssl-passthrough=true
           securityContext:
             capabilities:
               drop:

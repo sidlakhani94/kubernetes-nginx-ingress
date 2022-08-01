@@ -7,6 +7,10 @@ metadata:
   name: ingress-rules
   namespace: default
 spec:
+  tls:
+  - hosts:
+    - kmaster.local
+    secretName: nginx-ingress-tls
   rules:
    - http:
       paths:
